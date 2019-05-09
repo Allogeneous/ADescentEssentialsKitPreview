@@ -1,0 +1,28 @@
+name: ADEKP
+version: 1.0.1
+author: Allogeneous
+main: me.Allogeneous.ADEKP.ADEKPMain
+depend: [Essentials]
+
+commands:
+    ekitpreview:
+        description: Command to preview kits
+        usage: "/ekitpreview <kit name>"
+        aliases: [ekp, epk, epreviewkit, eshowkit]
+
+permissions:
+    adekp.kitpreview:
+        description: Allows usage of /ekitpreview
+        default: true
+    adekp.kitpreviewmoney:
+        description: Allows user to see the money they will get from the kit in chat
+        default: true
+    adekp.kitpreviewcommands:
+        description: Allows user to see what commands will be run when they get the kit in chat
+        default: true
+    adekp.kitpreviewusesign:
+        description: Allows user to preview a kit when clicking on a sign
+        default: true
+    adekp.kitpreviewcreatesign:
+        description: Allows user to create a kit preview sign
+        default: op
