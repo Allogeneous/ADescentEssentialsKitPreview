@@ -70,7 +70,7 @@ public class ADEKPMain extends JavaPlugin{
 		  }
 	
 	private void verifyConfigVersion(){
-		if(!getConfig().getString("version", "").equals("1.0.0")){
+		if(!getConfig().getString("version", "").equals("1.0.1")){
 			getLogger().info("Invalid config file found, creating a new one and copying the old one...");
 			try{
 			      File file = new File(getDataFolder(), "config.yml");
