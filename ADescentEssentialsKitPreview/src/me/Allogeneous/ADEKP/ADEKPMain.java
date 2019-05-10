@@ -26,7 +26,7 @@ public class ADEKPMain extends JavaPlugin{
 			msgs[3] = getConfig().getString("moneyAddMsg", "&6- &c{money}&6 will be added to your account!");
 			msgs[4] = getConfig().getString("commandAddMsg", "&6- The command: &c{command}&6 will be run!");
 			msgs[5] = getConfig().getString("cannotUseCommand", "&4You do not have access to that command.");
-			msgs[6] = getConfig().getString("cannoutUseSign", "&4You cannot interact with that!");
+			msgs[6] = getConfig().getString("cannotUseSign", "&4You cannot interact with that!");
 			msgs[7] = getConfig().getString("isNotAPlayer", "You must be a Player to send this command.");
 			
 			messageManager = new ADEKPChatMessageManager(msgs);
