@@ -15,20 +15,21 @@ import com.earth2me.essentials.textreader.IText;
 import com.earth2me.essentials.textreader.KeywordReplacer;
 import com.earth2me.essentials.textreader.SimpleTextInput;
 
-import net.md_5.bungee.api.ChatColor;
 
 public class ADEKPEssentialsKitDeconstructor {
 	
+	private final ADEKPMain plugin;
 	private final Essentials essentialsInstance;
 	
-	public ADEKPEssentialsKitDeconstructor(Essentials essentialsInstance) {
+	public ADEKPEssentialsKitDeconstructor(ADEKPMain plugin, Essentials essentialsInstance) {
+		this.plugin = plugin;
 		this.essentialsInstance = essentialsInstance;
 	}
 	
-	public ArrayList<ItemStack> getItemsFromKit(Player player, String name){
+	public ArrayList<ItemStack> getItemsFromKit(Player player, String kitName){
 		ArrayList<ItemStack> kitItems;
 		try {
-			Kit kit = new Kit(name, essentialsInstance);
+			Kit kit = new Kit(kitName, essentialsInstance);
 			User user = essentialsInstance.getUser(player);
 			kitItems = getKitItems(user, kit.getItems());
 		} catch (Exception e) {
@@ -37,10 +38,10 @@ public class ADEKPEssentialsKitDeconstructor {
 		return kitItems;
 	}
 	
-	public ArrayList<String> getMoneyFromKit(Player player, String name){
+	public ArrayList<String> getMoneyFromKit(Player player, String kitName){
 		ArrayList<String> kitMoney;
 		try {
-			Kit kit = new Kit(name, essentialsInstance);
+			Kit kit = new Kit(kitName, essentialsInstance);
 			User user = essentialsInstance.getUser(player);
 			kitMoney = getKitMoney(user, kit.getItems());
 		} catch (Exception e) {
@@ -49,10 +50,10 @@ public class ADEKPEssentialsKitDeconstructor {
 		return kitMoney;
 	}
 	
-	public ArrayList<String> getCommandsFromKit(Player player, String name){
+	public ArrayList<String> getCommandsFromKit(Player player, String kitName){
 		ArrayList<String> kitCommands;
 		try {
-			Kit kit = new Kit(name, essentialsInstance);
+			Kit kit = new Kit(kitName, essentialsInstance);
 			User user = essentialsInstance.getUser(player);
 			kitCommands = getKitCommands(user, kit.getItems());
 		} catch (Exception e) {
@@ -69,8 +70,7 @@ public class ADEKPEssentialsKitDeconstructor {
 
             for (String kitItem : output.getLines()) {
             	 if (kitItem.startsWith("/")) {
-            		 String commandString = ChatColor.GOLD + "- The command: " + ChatColor.RED + kitItem + ChatColor.GOLD + " will be run!";
-            		 kitCommands.add(commandString);
+            		 kitCommands.add(plugin.getMessageManager().translateADEKPMessageSyntax(plugin.getMessageManager().getCommandAddMsg(), "", "", kitItem));
                  }
 
             }
@@ -89,8 +89,7 @@ public class ADEKPEssentialsKitDeconstructor {
 
             for (String kitItem : output.getLines()) {
                 if (kitItem.startsWith(essentialsInstance.getSettings().getCurrencySymbol())) {
-                    String moneyString = ChatColor.GOLD + "- " + ChatColor.RED + kitItem + ChatColor.GOLD + " will be added to your account!";
-                    kitMoney.add(moneyString);
+                    kitMoney.add(plugin.getMessageManager().translateADEKPMessageSyntax(plugin.getMessageManager().getMoneyAddMsg(), "", kitItem, ""));
                 }
 
             }

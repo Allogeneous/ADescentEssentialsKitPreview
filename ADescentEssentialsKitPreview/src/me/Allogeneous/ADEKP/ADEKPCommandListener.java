@@ -10,19 +10,29 @@ import org.bukkit.inventory.ItemStack;
 
 import com.earth2me.essentials.Essentials;
 
-import net.md_5.bungee.api.ChatColor;
-
 
 public class ADEKPCommandListener implements CommandExecutor{
 	
+	private final ADEKPMain plugin;
 	private ADEKPEssentialsKitDeconstructor kitDeconstructor;
 	
-	public ADEKPCommandListener(Essentials essentialsInstance) {
-		kitDeconstructor = new ADEKPEssentialsKitDeconstructor(essentialsInstance);
+	public ADEKPCommandListener(ADEKPMain plugin, Essentials essentialsInstance) {
+		this.plugin = plugin;
+		kitDeconstructor = new ADEKPEssentialsKitDeconstructor(plugin, essentialsInstance);
 	}
 
 	@Override
 	public boolean onCommand(CommandSender sender, Command command, String commandLabel, String[] args) {
+		if(commandLabel.equalsIgnoreCase("adekpreload")){
+			if(sender.hasPermission("adekp.kitpreviewreloadconfig")) {
+				plugin.reloadConfigFile();
+				if(sender instanceof Player) {
+					sender.sendMessage("[ADEKP] config file reloaded!");
+				}
+			}else {
+				sender.sendMessage(plugin.getMessageManager().translateADEKPMessageSyntax(plugin.getMessageManager().getCannotUseCommand(), "", "", ""));
+			}
+		}
 		if(commandLabel.equalsIgnoreCase("ekitpreview") || commandLabel.equalsIgnoreCase("ekp") || commandLabel.equalsIgnoreCase("epk") || commandLabel.equalsIgnoreCase("epreviewkit") || commandLabel.equalsIgnoreCase("eshowkit")) {
 			if(sender instanceof Player) {
 				Player player = (Player) sender;
@@ -38,7 +48,7 @@ public class ADEKPCommandListener implements CommandExecutor{
 						}
 					
 						if((player.hasPermission("adekp.kitpreviewmoney") && !kitMoney.isEmpty()) || (player.hasPermission("adekp.kitpreviewcommands") && !kitCommands.isEmpty())) {
-							player.sendMessage(ChatColor.GOLD + "[ADEKP] Additional items in the " + ChatColor.RED + kitName + ChatColor.GOLD +" kit!");
+							player.sendMessage(plugin.getMessageManager().translateADEKPMessageSyntax(plugin.getMessageManager().getStartChatList(), kitName, "", ""));
 						}
 							
 						
@@ -54,15 +64,15 @@ public class ADEKPCommandListener implements CommandExecutor{
 						}
 						
 						if((player.hasPermission("adekp.kitpreviewmoney") && !kitMoney.isEmpty()) || (player.hasPermission("adekp.kitpreviewcommands") && !kitCommands.isEmpty())) {
-							player.sendMessage(ChatColor.GOLD + "[ADEKP] End of additional items in the " + ChatColor.RED + kitName + ChatColor.GOLD +" kit!");
+							player.sendMessage(plugin.getMessageManager().translateADEKPMessageSyntax(plugin.getMessageManager().getEndChatList(), kitName, "", ""));
 						}
 						
 					}
 				}else {
-					player.sendMessage(ChatColor.DARK_RED + "You do not have access to that command.");
+					player.sendMessage(plugin.getMessageManager().translateADEKPMessageSyntax(plugin.getMessageManager().getCannotUseCommand(), "", "", ""));
 				}
 			}else {
-				sender.sendMessage("You must be a Player to send this command.");
+				sender.sendMessage(plugin.getMessageManager().translateADEKPMessageSyntax(plugin.getMessageManager().getIsNotAPlayer(), "", "", ""));
 			}
 			
 		}

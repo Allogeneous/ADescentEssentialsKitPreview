@@ -31,7 +31,7 @@ public class ADEKPEventHandler implements Listener {
 		this.plugin = plugin;
 		this.essentialsInstance = essentialsInstance;
 		
-		kitDeconstructor = new ADEKPEssentialsKitDeconstructor(this.essentialsInstance);
+		kitDeconstructor = new ADEKPEssentialsKitDeconstructor(plugin, this.essentialsInstance);
 	}
 
 	@EventHandler
@@ -71,10 +71,8 @@ public class ADEKPEventHandler implements Listener {
 							player.openInventory(adekpPreviewContainer.getPreviewInventry());
 						}
 
-						if ((player.hasPermission("adekp.kitpreviewmoney") && !kitMoney.isEmpty())
-								|| (player.hasPermission("adekp.kitpreviewcommands") && !kitCommands.isEmpty())) {
-							player.sendMessage(ChatColor.GOLD + "[ADEKP] Additional items in the " + ChatColor.RED
-									+ kitName + ChatColor.GOLD + " kit!");
+						if ((player.hasPermission("adekp.kitpreviewmoney") && !kitMoney.isEmpty()) || (player.hasPermission("adekp.kitpreviewcommands") && !kitCommands.isEmpty())) {
+							player.sendMessage(plugin.getMessageManager().translateADEKPMessageSyntax(plugin.getMessageManager().getStartChatList(), kitName, "", ""));
 						}
 
 						if (!kitCommands.isEmpty() && player.hasPermission("adekp.kitpreviewcommands")) {
@@ -88,14 +86,12 @@ public class ADEKPEventHandler implements Listener {
 							}
 						}
 
-						if ((player.hasPermission("adekp.kitpreviewmoney") && !kitMoney.isEmpty())
-								|| (player.hasPermission("adekp.kitpreviewcommands") && !kitCommands.isEmpty())) {
-							player.sendMessage(ChatColor.GOLD + "[ADEKP] End of additional items in the "
-									+ ChatColor.RED + kitName + ChatColor.GOLD + " kit!");
+						if ((player.hasPermission("adekp.kitpreviewmoney") && !kitMoney.isEmpty()) || (player.hasPermission("adekp.kitpreviewcommands") && !kitCommands.isEmpty())) {
+							player.sendMessage(plugin.getMessageManager().translateADEKPMessageSyntax(plugin.getMessageManager().getEndChatList(), kitName, "", ""));
 						}
 
 					} else {
-						player.sendMessage(ChatColor.DARK_RED + "You cannot interact with that.");
+						player.sendMessage(plugin.getMessageManager().translateADEKPMessageSyntax(plugin.getMessageManager().getCannotUseSign(), "", "", ""));
 					}
 				}
 			}

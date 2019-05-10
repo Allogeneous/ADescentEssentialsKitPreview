@@ -1,5 +1,5 @@
 name: ADEKP
-version: 1.0.1
+version: 1.0.2
 author: Allogeneous
 main: me.Allogeneous.ADEKP.ADEKPMain
 depend: [Essentials]
@@ -9,6 +9,9 @@ commands:
         description: Command to preview kits
         usage: "/ekitpreview <kit name>"
         aliases: [ekp, epk, epreviewkit, eshowkit]
+    adekpreload:
+        description: Reloads the config file for the plugin
+        usage: "/adekpreload"
 
 permissions:
     adekp.kitpreview:
@@ -25,4 +28,7 @@ permissions:
         default: true
     adekp.kitpreviewcreatesign:
         description: Allows user to create and destroy a kit preview sign
+        default: op
+    adekp.kitpreviewreloadconfig:
+        description: Allows user to reload the plugin configuration file
         default: op
