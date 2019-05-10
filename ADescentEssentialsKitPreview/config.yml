@@ -16,7 +16,7 @@ tag: "&6[ADEKP]"
 #All can use {tag}
 #Can use {kitname}
 startChatList: "{tag} Additional items in the &c{kitname}&6 kit!"
-enchdChatList: "{tag} End of additional items in the &c{kitname}&6 kit!"
+endChatList: "{tag} End of additional items in the &c{kitname}&6 kit!"
 #Can use {money}
 moneyAddMsg: "&6- &c{money}&6 will be added to your account!"
 #Can use {command}
@@ -29,4 +29,4 @@ cannotUseSign: "&4You cannot interact with that!"
 isNotAPlayer: "You must be a Player to send this command."
 
 #NO NOT TOUCH
-version: 1.0.0
+version: 1.0.1
