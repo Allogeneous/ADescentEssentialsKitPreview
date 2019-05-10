@@ -16,7 +16,7 @@ tag: "&6[ADEKP]"
 #All can use {tag}
 #Can use {kitname}
 startChatList: "{tag} Additional items in the &c{kitname}&6 kit!"
-enchdChatList: "{tag} End of additional items int the &c{kitname}&6 kit!"
+enchdChatList: "{tag} End of additional items in the &c{kitname}&6 kit!"
 #Can use {money}
 moneyAddMsg: "&6- &c{money}&6 will be added to your account!"
 #Can use {command}
